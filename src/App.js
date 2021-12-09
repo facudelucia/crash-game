@@ -10,25 +10,28 @@ function App() {
 
   const [multiplier, setMultiplier] = useState(1)
   const [multiplierDecimals, setMultiplierDecimals] = useState(0)
+  const [credits, setCredits] = useState(10000)
+  const [winnerNumber, setWinnerNumber] = useState(((Math.random() * (19.99 - 1) + 1).toFixed(2) * 1).toString())
+  const [secondsRestart, setSecondsRestart] = useState(5)
+  var secondsRestartVar = secondsRestart
+
 
   const [isExploded, setIsExploded] = useState(false)
-  const [isRetired, setIsRetired] = useState(false)
+  const [isCashedOut, setIsCashedOut] = useState(false)
   const [isPlacedBet, setIsPlacedBet] = useState(false)
+  const [isTimerRender, setIsTimerRender] = useState(false)
 
-  const [credits, setCredits] = useState(10000)
   const [form, setForm] = useState({
     bet: ''
   })
   const { bet } = form
 
-  const [winnerNumber, setWinnerNumber] = useState(((Math.random() * (19.99 - 1) + 1).toFixed(2) * 1).toString())
-  const [secondsRestart, setSecondsRestart] = useState(5)
-  var secondsRestartVar = secondsRestart
 
-  const [isTimerRender, setIsTimerRender] = useState(false)
   const [lastMultipliers, setLastMultipliers] = useState([])
   const [lastBets, setLastBets] = useState([])
   const [cashout, setCashout] = useState('')
+
+
   const startMultiplier = () => {
     setMultiplierDecimals(multiplierDecimals + 1)
     if (multiplierDecimals > 99) {
@@ -72,7 +75,7 @@ function App() {
     const profit = bet * cashout
     console.log('profit', profit)
     let betObj = {}
-    if (isExploded && isPlacedBet && !isRetired) {
+    if (isExploded && isPlacedBet && !isCashedOut) {
       betObj.profit = bet
       betObj.betProp = bet
       betObj.lost = true
@@ -80,26 +83,26 @@ function App() {
       setIsPlacedBet(false)
       setCashout('')
     }
-    if (isExploded && isPlacedBet && isRetired) {
+    if (isExploded && isPlacedBet && isCashedOut) {
       betObj.profit = profit.toFixed(2)
       betObj.betProp = bet
       betObj.lost = false
       setLastBets([betObj, ...lastBets])
       setCredits(credits + profit)
-      setIsRetired(false)
+      setIsCashedOut(false)
       setIsPlacedBet(false)
       setCashout('')
     }
 
-  }, [isExploded, isRetired, cashout])
+  }, [isExploded, isCashedOut, cashout])
 
 
-  const handleRetire = () => {
+  const handleCashout = () => {
     if (isExploded || !bet) return
     const number = `${multiplier}.${multiplierDecimals}`
     console.log(number)
     setCashout(number)
-    setIsRetired(true)
+    setIsCashedOut(true)
   }
 
   const handleChange = (e) => {
@@ -126,7 +129,7 @@ function App() {
         }
       </div>
       <ChartContainer multiplier={multiplier} />
-      <Sidebar bet={bet} handleChange={handleChange} handleSubmit={handleSubmit} handleRetire={handleRetire} isPlacedBet={isPlacedBet} lastBets={lastBets} />
+      <Sidebar bet={bet} handleChange={handleChange} handleSubmit={handleSubmit} handleCashout={handleCashout} isPlacedBet={isPlacedBet} lastBets={lastBets} />
       <Footer lastMultipliers={lastMultipliers} />
     </>
 

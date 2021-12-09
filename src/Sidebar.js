@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Sidebar = ({ bet, handleSubmit, handleChange, handleRetire, isPlacedBet, lastBets }) => {
+const Sidebar = ({ bet, handleSubmit, handleChange, handleCashout, isPlacedBet, lastBets }) => {
     return (
         <div className="sidebar">
 
@@ -10,7 +10,7 @@ const Sidebar = ({ bet, handleSubmit, handleChange, handleRetire, isPlacedBet, l
                 </form>
                 {
                     isPlacedBet
-                        ? <button onClick={handleRetire}>Retirarme</button>
+                        ? <button onClick={handleCashout}>Cash out</button>
                         : <button onClick={handleSubmit} type="submit">Place bet</button>
                 }
             </div>
@@ -28,10 +28,6 @@ const Sidebar = ({ bet, handleSubmit, handleChange, handleRetire, isPlacedBet, l
                                         + ${bet.profit}
                                     </span>
                             }
-
-                            <span>
-                                ${bet.betProp}
-                            </span>
                         </div>
                     ))
                 }
