@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+.chart-container {
+  position: relative;
+  width:80%;
+  height: 100vh;
+  margin-top: 70px;
+  left: 20%;
+}
+.multiplier{
+  position: absolute;
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  left: 20%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background-color: #2E3459;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.header span{
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+.money-icon{
+  width: 50px;
+  margin: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar {
+  position: absolute;
+  width: 20%;
+  height: 100vh;
+  top: 70px;
+  left: 0;
+  background-color: #0D1021;
+  padding-top: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidebar-top{
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.sidebar-top form{
+  width: 100%;
+}
+
+.sidebar input{
+  width: 90%;
+  padding: 0;
+  display: block;
+  margin: 10px auto;
+  outline: none;
+}
+.sidebar button{
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+}
+.last-bets-list{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  overflow-y: auto;
+}
+.last-bets-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   color: white;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 0px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid white;
 }
-
-.App-link {
-  color: #61dafb;
+.last-bets-item-lost{
+  color: #DC3545;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.last-bets-item-won{
+  color: #28A745;
+}
+.footer{
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.last-multipliers-list{
+  display: flex;
+  flex-direction: row;
+  overflow-y: hidden;
+  background-color: #0D1021;
+  align-items: center;
+}
+.last-multipliers-list span{
+  color: white;
+  font-weight: 700;
+}
+.last-multipliers-item{
+  color: #576740;
+  font-weight: 700;
+  padding: 10px;
 }
